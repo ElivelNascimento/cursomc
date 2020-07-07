@@ -18,11 +18,15 @@ public class CategoriaResource {
 	{
 		Categoria cat1 = new Categoria(1, "Escritório");
 		Categoria cat2 = new Categoria(2, "TI");
+		Categoria cat3 = new Categoria(2, "Desenvolvimento");
+		Categoria cat4 = new Categoria(2, "Mecânica");
 		
 		List<Categoria> lista = new ArrayList<>();
 		
 		lista.add(cat1);
 		lista.add(cat2);
+		lista.add(cat3);
+		lista.add(cat4);
 		
 		return lista;
 	}
