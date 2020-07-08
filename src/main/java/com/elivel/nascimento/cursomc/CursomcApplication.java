@@ -9,7 +9,7 @@ public class CursomcApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
 		
-		System.out.println("ELivel Santos Nascimento");
+		System.out.println("Desenvolvido por: ELivel Nascimento");
 	}
 
 }
