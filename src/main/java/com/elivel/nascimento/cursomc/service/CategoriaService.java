@@ -9,7 +9,6 @@ import com.elivel.nascimento.cursomc.domain.Categoria;
 import com.elivel.nascimento.cursomc.repositories.CategoriaRepository;
 import com.elivel.nascimento.cursomc.service.exeptions.ObjectNotFoundException;
 
-//elivel
 
 @Service
 public class CategoriaService {
@@ -20,12 +19,8 @@ public class CategoriaService {
 	public Categoria buscar(Integer id) {
 	   Optional<Categoria> obj = repositorio.findById(id);
 	   
-	   if(obj == null) {
-		  throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
-				  + ", " + Categoria.class.getName());
-	   }
-	   
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 	
 }
