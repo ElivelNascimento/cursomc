@@ -15,10 +15,17 @@ import com.elivel.nascimento.cursomc.service.CategoriaService;
 @RequestMapping(value = "/categorias")
 public class CategoriaResource {
 	
+	/*
+	@RequestMapping(method=RequestMethod.GET)
+	public String Teste() {
+		return "ksjdfjkdgh jfkdgh jkdfgh jksdfhjkg  ";
+	}
+	*/
 	@Autowired
 	private CategoriaService service;
 	
-	@RequestMapping(value = "{/id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}"
+			+ "", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
 		Categoria obj = service.buscar(id);
 		return ResponseEntity.ok(obj);
