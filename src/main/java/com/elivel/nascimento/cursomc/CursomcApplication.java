@@ -13,6 +13,7 @@ import com.elivel.nascimento.cursomc.domain.Cidade;
 import com.elivel.nascimento.cursomc.domain.Cliente;
 import com.elivel.nascimento.cursomc.domain.Endereco;
 import com.elivel.nascimento.cursomc.domain.Estado;
+import com.elivel.nascimento.cursomc.domain.ItemPedido;
 import com.elivel.nascimento.cursomc.domain.Pagamento;
 import com.elivel.nascimento.cursomc.domain.PagamentoComBoleto;
 import com.elivel.nascimento.cursomc.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.elivel.nascimento.cursomc.repositories.CidadeRepository;
 import com.elivel.nascimento.cursomc.repositories.ClienteRepository;
 import com.elivel.nascimento.cursomc.repositories.EnderecoRepository;
 import com.elivel.nascimento.cursomc.repositories.EstadoRepository;
+import com.elivel.nascimento.cursomc.repositories.ItemPedidoRepository;
 import com.elivel.nascimento.cursomc.repositories.PagamentoRepository;
 import com.elivel.nascimento.cursomc.repositories.PedidoRepository;
 import com.elivel.nascimento.cursomc.repositories.ProdutoRepository;
@@ -56,6 +58,9 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -126,6 +131,19 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
+		
+		ItemPedido item1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido item2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido item3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(item1, item2));
+		ped2.getItens().addAll(Arrays.asList(item3));
+		
+		p1.getItens().addAll(Arrays.asList(item1));
+		p2.getItens().addAll(Arrays.asList(item3));
+		p3.getItens().addAll(Arrays.asList(item2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(item1, item2, item3));
 	}
 
 }
