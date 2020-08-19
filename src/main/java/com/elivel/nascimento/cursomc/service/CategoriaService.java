@@ -10,6 +10,7 @@ import com.elivel.nascimento.cursomc.repositories.CategoriaRepository;
 import com.elivel.nascimento.cursomc.service.exeptions.ObjectNotFoundException;
 
 
+
 @Service
 public class CategoriaService {
 	
@@ -23,4 +24,8 @@ public class CategoriaService {
 				"Objeto não encontrado! " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return repositorio.save(obj);
+	}
 }
